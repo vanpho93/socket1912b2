@@ -14,17 +14,7 @@ app.get('/', (req, res) => res.render('home'));
 
 io.on('connection', socket => {
   console.log('Co nguoi ket noi');
-  socket.on('CLIENT_SIGN_UP', username => {
-    if(arrUsername.indexOf(username) == -1) {
-      arrUsername.push(username);
-      //Emit cho tat ca user
-      socket.username = username;
-      io.emit('NEW_USER_CONNECTED', username);
-      socket.emit('SERVER_ACCEPT_USERNAME', username);
-    } else{
-      socket.emit('SERVER_REJECT_USERNAME');
-    }
-  });
+  socket.on('CLIENT_SIGN_UP', require('./socketControllers/signUp.js')(io, socket));
 
   socket.on('disconnect', () => {
     io.emit('USER_DISCONNECTED', socket.username);
