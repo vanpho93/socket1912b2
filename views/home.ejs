@@ -7,11 +7,21 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
       $(document).ready(() => {
-        let socket = io.connect();
+        var socket = io.connect();
+
+        $('#btn-signup').click(() => {
+          let username = $('#txt-username').val();
+          socket.emit('CLIENT_SIGN_UP', username);
+        });
+        
       });
     </script>
   </head>
   <body>
-    <h1>KhoaPham Training</h1>
+    <div id="div-signup">
+      <input type="text" placeholder="Username" id="txt-username"/>
+      <br/>
+      <button id="btn-signup">Sign Up</button>
+    </div>
   </body>
 </html>

@@ -12,4 +12,7 @@ app.get('/', (req, res) => res.render('home'));
 
 io.on('connection', socket => {
   console.log('Co nguoi ket noi');
+  socket.on('CLIENT_SIGN_UP', username => {
+    console.log('New user: ' + username);
+  });
 });
