@@ -13,7 +13,15 @@
           let username = $('#txt-username').val();
           socket.emit('CLIENT_SIGN_UP', username);
         });
-        
+
+        socket.on('SERVER_ACCEPT_USERNAME', username => {
+          alert('Username cua ban la: ' + username);
+        });
+
+        socket.on('SERVER_REJECT_USERNAME', () => {
+          alert('Vui long chon username khac');
+        });
+
       });
     </script>
   </head>

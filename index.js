@@ -19,7 +19,7 @@ io.on('connection', socket => {
       arrUsername.push(username);
       //Emit cho tat ca user
       io.emit('NEW_USER_CONNECTED', username);
-      socket.emit('SERVER_ACCEPT_USERNAME');
+      socket.emit('SERVER_ACCEPT_USERNAME', username);
     } else{
       socket.emit('SERVER_REJECT_USERNAME');
     }
