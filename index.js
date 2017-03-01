@@ -18,10 +18,15 @@ io.on('connection', socket => {
     if(arrUsername.indexOf(username) == -1) {
       arrUsername.push(username);
       //Emit cho tat ca user
+      socket.username = username;
       io.emit('NEW_USER_CONNECTED', username);
       socket.emit('SERVER_ACCEPT_USERNAME', username);
     } else{
       socket.emit('SERVER_REJECT_USERNAME');
     }
+  });
+
+  socket.on('disconnect', () => {
+    io.emit('USER_DISCONNECTED', socket.username);
   });
 });

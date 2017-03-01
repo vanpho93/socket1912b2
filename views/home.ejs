@@ -22,6 +22,16 @@
           alert('Vui long chon username khac');
         });
 
+        socket.on('NEW_USER_CONNECTED', username => {
+          $('#ul-username').append(`<li id="user-${username}">${username}</li>`);
+        });
+
+        socket.on('USER_DISCONNECTED', username => {
+          let id = `#user-${username}`;
+          console.log(id);
+          $(id).remove();
+        });
+
       });
     </script>
   </head>
@@ -31,5 +41,9 @@
       <br/>
       <button id="btn-signup">Sign Up</button>
     </div>
+
+    <ul id="ul-username">
+    </ul>
+
   </body>
 </html>
