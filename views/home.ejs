@@ -26,7 +26,9 @@
           })
         });
 
-        socket.on('RECEIVE_NEW_MESSAGE', msg => console.log(msg));
+        socket.on('RECEIVE_NEW_MESSAGE', msg => {
+          $('#ul-message').append(`<li>${msg}</li>`)
+        });
 
         socket.on('SERVER_ACCEPT_USERNAME', username => {
           alert('Username cua ban la: ' + username);
@@ -65,6 +67,10 @@
     </div>
 
     <ul id="ul-username">
+    </ul>
+
+    <ul id="ul-message">
+
     </ul>
 
   </body>
