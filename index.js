@@ -28,7 +28,9 @@ io.on('connection', socket => {
 
   socket.on('CLIENT_SEND_MESSAGE', data => {
     let destinationSocket = arrSocket.find(soc => soc.username === data.des);
-    destinationSocket.emit('RECEIVE_NEW_MESSAGE', 
-      socket.username + ': ' + data.msg);
+    if(destinationSocket){
+      let message = socket.username + ': ' + data.msg;
+      destinationSocket.emit('RECEIVE_NEW_MESSAGE', message);
+    }
   });
 });
