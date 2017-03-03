@@ -21,5 +21,7 @@ io.on('connection', socket => {
 
   socket.on('disconnect', () => {
     io.emit('USER_DISCONNECTED', socket.username);
+    let index = arrUsername.indexOf(socket.username)
+    arrUsername.splice(index, 1);
   });
 });
