@@ -6,6 +6,8 @@
     <script src="jquery-3.1.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
+      let des = null;
+
       $(document).ready(() => {
         var socket = io.connect();
 
@@ -15,7 +17,6 @@
         });
 
         $('#btn-send').click(() => {
-          let des = $('#txt-destination').val();
           let msg = $('#txt-message').val();
           socket.emit('CLIENT_SEND_MESSAGE', {des, msg});
         });
@@ -50,13 +51,18 @@
         });
 
         $('#ul-username').on('click', 'li', function(){
-          console.log($(this).html());
+          $('#ul-username li').removeClass('active');
+          des = $(this).html();
+          $(this).addClass('active');
         });
       });
     </script>
     <style>
       #ul-message {
         background-color: #C94B17
+      }
+      .active {
+        color: #74FFCE
       }
     </style>
   </head>
@@ -68,8 +74,6 @@
     </div>
 
     <div id="div-chat">
-      <input type="text" placeholder="to: " id="txt-destination"/>
-      <br/><br/>
       <input type="text" placeholder="Your message" id="txt-message"/>
       <br/><br/>
       <button id="btn-send">Send</button>
