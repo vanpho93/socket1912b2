@@ -14,6 +14,10 @@
           socket.emit('CLIENT_SIGN_UP', username);
         });
 
+        socket.on('LIST_ONLINE_USER', arrUsername => {
+          console.log(arrUsername);
+        });
+
         socket.on('SERVER_ACCEPT_USERNAME', username => {
           alert('Username cua ban la: ' + username);
         });
@@ -25,6 +29,8 @@
         socket.on('NEW_USER_CONNECTED', username => {
           $('#ul-username').append(`<li id="user-${username}">${username}</li>`);
         });
+
+
 
         socket.on('USER_DISCONNECTED', username => {
           let id = `#user-${username}`;
