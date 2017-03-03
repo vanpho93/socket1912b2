@@ -48,8 +48,17 @@
           console.log(id);
           $(id).remove();
         });
+
+        $('#ul-username').on('click', 'li', function(){
+          console.log($(this).html());
+        });
       });
     </script>
+    <style>
+      #ul-message {
+        background-color: #C94B17
+      }
+    </style>
   </head>
   <body>
     <div id="div-signup">
@@ -72,6 +81,5 @@
     <ul id="ul-message">
 
     </ul>
-
   </body>
 </html>
