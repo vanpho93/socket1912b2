@@ -15,7 +15,9 @@
         });
 
         socket.on('LIST_ONLINE_USER', arrUsername => {
-          console.log(arrUsername);
+          arrUsername.forEach(username => {
+            $('#ul-username').append(`<li id="user-${username}">${username}</li>`)
+          })
         });
 
         socket.on('SERVER_ACCEPT_USERNAME', username => {
