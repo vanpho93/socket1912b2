@@ -6,7 +6,7 @@ let io = require('socket.io')(server);//2
 server.listen(3000, () => console.log('Server started'));//3
 
 let arrUsername = require('./socketControllers/arrUsername.js');
-
+let arrSocket = require('./socketControllers/arrSocket.js');
 app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
@@ -23,10 +23,12 @@ io.on('connection', socket => {
     io.emit('USER_DISCONNECTED', socket.username);
     let index = arrUsername.indexOf(socket.username)
     arrUsername.splice(index, 1);
+    arrSocket.splice(index, 1);
   });
 
   socket.on('CLIENT_SEND_MESSAGE', data => {
-    console.log(data);
+    let destinationSocket = arrSocket.find(soc => soc.username === data.des);
+    destinationSocket.emit('RECEIVE_NEW_MESSAGE', 
+      socket.username + ': ' + data.msg);
   });
-  
 });

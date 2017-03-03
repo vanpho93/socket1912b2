@@ -26,6 +26,8 @@
           })
         });
 
+        socket.on('RECEIVE_NEW_MESSAGE', msg => console.log(msg));
+
         socket.on('SERVER_ACCEPT_USERNAME', username => {
           alert('Username cua ban la: ' + username);
           $('#div-signup').hide();
@@ -55,9 +57,9 @@
     </div>
 
     <div id="div-chat">
-      <input type="text" placeholder="Username" id="txt-destination"/>
+      <input type="text" placeholder="to: " id="txt-destination"/>
       <br/><br/>
-      <input type="text" placeholder="Username" id="txt-message"/>
+      <input type="text" placeholder="Your message" id="txt-message"/>
       <br/><br/>
       <button id="btn-send">Send</button>
     </div>
