@@ -14,6 +14,12 @@
           socket.emit('CLIENT_SIGN_UP', username);
         });
 
+        $('#btn-send').click(() => {
+          let des = $('#txt-destination').val();
+          let msg = $('#txt-message').val();
+          socket.emit('CLIENT_SEND_MESSAGE', {des, msg});
+        });
+
         socket.on('LIST_ONLINE_USER', arrUsername => {
           arrUsername.forEach(username => {
             $('#ul-username').append(`<li id="user-${username}">${username}</li>`)
@@ -22,6 +28,7 @@
 
         socket.on('SERVER_ACCEPT_USERNAME', username => {
           alert('Username cua ban la: ' + username);
+          $('#div-signup').hide();
         });
 
         socket.on('SERVER_REJECT_USERNAME', () => {
@@ -43,8 +50,16 @@
   <body>
     <div id="div-signup">
       <input type="text" placeholder="Username" id="txt-username"/>
-      <br/>
+      <br/><br/>
       <button id="btn-signup">Sign Up</button>
+    </div>
+
+    <div id="div-chat">
+      <input type="text" placeholder="Username" id="txt-destination"/>
+      <br/><br/>
+      <input type="text" placeholder="Username" id="txt-message"/>
+      <br/><br/>
+      <button id="btn-send">Send</button>
     </div>
 
     <ul id="ul-username">

@@ -24,4 +24,9 @@ io.on('connection', socket => {
     let index = arrUsername.indexOf(socket.username)
     arrUsername.splice(index, 1);
   });
+
+  socket.on('CLIENT_SEND_MESSAGE', data => {
+    console.log(data);
+  });
+  
 });
